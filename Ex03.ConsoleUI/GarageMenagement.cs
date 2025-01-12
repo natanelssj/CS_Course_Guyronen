@@ -12,37 +12,44 @@ namespace Ex03.ConsoleUI
     {
         public static void Start()
         {
-            string choice=null;
 
-            while (choice != "4") 
+            MenuPrints.PrintMainMenu();
+            bool exitProgram = false;
+            while (!exitProgram)
             {
-                Console.Clear();
-                MenuPrints.PrintMainMenu();
-                choice = Console.ReadLine();
-
-                switch (choice)
+                string userChoise = "";
+                userChoise = Console.ReadLine();
+                switch (userChoise)
                 {
                     case "1":
                         InsertVichle();
                         break;
-
-                    case "2":
-                        ManageVichle();
+             /*       case 2:
+                        displayLicenseNumbers();
                         break;
-
-                    case "3":
-                        PrintVichle();
+                    case 3:
+                        changeVehicleStatus();
                         break;
-
-                    case "4":
-                        Console.WriteLine("Exiting the program. Goodbye!");
+                    case 4:
+                        inflateVehicleTires();
                         break;
-
+                    case 5:
+                        refuelVehicle();
+                        break;
+                    case 6:
+                        rechargeVehicle();
+                        break;
+                    case 7:
+                        displayVehicleInformation();
+                        break;*/
+                    case "8":
+                        exitProgram = true;
+                        break;
                     default:
-                        Console.WriteLine("Invalid choice. Please enter a number between 1 and 4.");
+                        Console.WriteLine("Invalid choice.");
                         break;
                 }
-            } 
+            }
         }
         public static void InsertVichle()
         {
@@ -63,6 +70,8 @@ namespace Ex03.ConsoleUI
                 MenuPrints.PrintInsertNewVhicleMenu();
                 string choice = Console.ReadLine();
                 Console.WriteLine("Creating New ");
+                Factory.ChoosingVichle(choice);
+
                 /*
                 Vichle newVichle = CreateVehicleByChoice(choice, licensePlate)// יצירת רכב חדש
                 if (newVichle != null)

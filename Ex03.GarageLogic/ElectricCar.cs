@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 namespace Ex03.GarageLogic
 {
-    internal class ElectricCar :DriveByBattery
+    public class ElectricCar :DriveByBattery
     {
         const int  m_Wheels = 5;
 

@@ -14,9 +14,14 @@ namespace Ex03.ConsoleUI
             Console.Clear();
             Console.WriteLine("***********GARAGE MENU***************\n");
             Console.WriteLine("1.Insert new vhicle");
-            Console.WriteLine("2.Manage vhicles");
-            Console.WriteLine("3.Print vhicles");
-            Console.WriteLine("4.Exit");
+            Console.WriteLine("2.Show Number Liecence");
+            Console.WriteLine("3.Change Status Vichle");
+            Console.WriteLine("4.Inflate Tier");
+            Console.WriteLine("5.Add Fuel To Viechle");
+            Console.WriteLine("6.Charge an Electric Vichle");
+            Console.WriteLine("7.Show Vivhle details ");
+            Console.WriteLine("8.Exit");
+
         }
         internal static void PrintInsertNewVhicleMenu()
         {
@@ -32,24 +37,21 @@ namespace Ex03.ConsoleUI
         internal static void PrintPrintVhicleMenu()
         {
             Console.Clear();
-            Console.WriteLine("*********Print Vhicle Menu*************\n");
+            Console.WriteLine("*********Show Number Liecence Menu*************\n");
             Console.WriteLine("1.Print vhicle by license num");
             Console.WriteLine("2.Print all in fixing");
             Console.WriteLine("3.Print all that fixed");
             Console.WriteLine("4.Print all vhicles");
-            Console.WriteLine("5.Print all vhicles basic data");
+       //     Console.WriteLine("5.Print all vhicles basic data");
             Console.WriteLine("6.Back To Main Menu");
 
         }
-
-        internal static void PrintVhiclesMenuBasic()
+        internal static void ChangeStatusByLicense()
         {
             Console.Clear();
-            Console.WriteLine("*************Manage Vhicles Menu***************\n");
-            Console.WriteLine("1.See vhicles data and pick vhicle by license number");
-            Console.WriteLine("2.Pick vhicle by license number");
-            Console.WriteLine("3.Back to main menu");
-
+            Console.WriteLine("*************Change Status Vichle Menu***************\n");
+            Console.WriteLine("1.Pick vhicle by license number");
+            Console.WriteLine("2.Back to main menu");
         }
 
         internal static void PrintChangeStatusMenu()
@@ -64,17 +66,13 @@ namespace Ex03.ConsoleUI
 
         internal static void PrintManageVhiclesMenu()
         {
-
             Console.WriteLine("Pick what you want to do with the car\n");
-            Console.WriteLine("1.Change Status");
-            Console.WriteLine("2.Put air pressure");
+            Console.WriteLine("1.Enter Licence Number");
+          /*  Console.WriteLine("2.Put air pressure");
             Console.WriteLine("3.Put Fuel / charge battery");
             Console.WriteLine("4.Back to previous menu");
-        }
-
-
-
-        
+        */}
+  
         internal static void PrintMenuOfFuel()
         {
             Console.WriteLine("Please pick fuel kind");

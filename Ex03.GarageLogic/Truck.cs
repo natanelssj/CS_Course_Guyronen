@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Ex03.GarageLogic
 {
-    internal class Truck:DriveByFuel
+    public class Truck:DriveByFuel
     {
         bool m_isTransportRefrigeratedMaterials;
 

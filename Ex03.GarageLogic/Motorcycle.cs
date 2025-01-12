@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Ex03.GarageLogic
 {
-    internal class Motorcycle:DriveByFuel
+    public class Motorcycle:DriveByFuel
     {
         const  int m_Wheels = 2;
 
@@ -22,10 +22,7 @@ namespace Ex03.GarageLogic
 
         Wheel[] m_CollectionWheels=new Wheel[m_Wheels];   
 
-
-
-
-        public Motorcycle()
+     public Motorcycle()
         {
 
             m_FuelMax = m_MaxFuelTank;
