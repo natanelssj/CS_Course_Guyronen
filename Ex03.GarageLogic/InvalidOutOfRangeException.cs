@@ -2,24 +2,16 @@
 
 namespace Ex03.GarageLogic
 {
-    public class InvalidOutOfRangeException : Exception
+    public class ValueOutOfRangeException : Exception
     {
-        private readonly float m_MaxValue;
-        private readonly float m_MinValue;
-        private readonly string m_ExceptionMessage;
+        private float m_MinValue;
+        private float m_MaxValue;
 
-        public InvalidOutOfRangeException(float i_MinValue, float i_MaxValue, float i_InvalidNum)
+        public ValueOutOfRangeException(float i_MinValue, float i_MaxValue)
+            : base($"Value isn't on range. The allowed range is: {i_MinValue} - {i_MaxValue}")
         {
             m_MinValue = i_MinValue;
             m_MaxValue = i_MaxValue;
-            m_ExceptionMessage = string.Format(
-                $"Error: The value {i_InvalidNum} is out of range. Valid range: ({m_MinValue}+{m_MaxValue})/{m_MaxValue}",
-                i_InvalidNum,
-                m_MinValue,
-                m_MaxValue
-            );
         }
-
-        public override string Message => m_ExceptionMessage;
     }
 }

@@ -6,17 +6,10 @@ namespace Ex03.GarageLogic
 {
     public class DriveByFuel : Vichle
     {
-        public enum Fuel
-        {
-            Octan95,
-            Octan96,
-            Octan98,
-            Soler
-        }
 
         protected float m_FuelRemain = 0;
         protected float m_FuelMax = 0;
-        internal Fuel m_FuelKind;
+        public eFuelType m_FuelKind;
         private const float k_MinValue = 0;
 
 
@@ -47,7 +40,7 @@ namespace Ex03.GarageLogic
             return m_FuelKind.ToString();
         }
         
-        public void PutFuel(float i_Liters, Fuel i_FuelKind)
+        public void PutFuel(float i_Liters,eFuelType i_FuelKind)
         {
 
             if (m_FuelKind == i_FuelKind)

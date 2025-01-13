@@ -10,7 +10,7 @@ namespace Ex03.GarageLogic
     {
         //string[] m_Color = {"blue", "black","white","gray" };
 
-        CarColor m_CarColor=CarColor.White;
+        eCarColor m_CarColor;
 
         int[] m_DoorsNumber = { 2, 3, 4, 5 };
 
@@ -26,7 +26,7 @@ namespace Ex03.GarageLogic
 
         float m_FuelTank = 52;
 
-        private Fuel k_PrivateFuel = Fuel.Octan95;
+        private eFuelType k_PrivateFuel = eFuelType.Octan95;
 
         private Wheel[] m_CollectionWheels=new Wheel[m_Wheels];
        
@@ -36,29 +36,25 @@ namespace Ex03.GarageLogic
             m_FuelMax = m_FuelTank;
             m_FuelKind = k_PrivateFuel;
 
-            for (int i = 0;i< m_Wheels; i++)
+            /*for (int i = 0;i< m_Wheels; i++)
             {
                 m_CollectionWheels[i] = new Wheel();
                 m_CollectionWheels[i].MaxAirPressure=m_MaxAirPressure;
-            }
+            }*/
 
 
         }
-        public string ColorOfCar
+        public eCarColor CarColor
         {
-            get { return m_CarColor.ToString(); }
+            get
+            {
+                return m_CarColor;
+            }
             set
             {
-                if (Enum.TryParse(value, true, out CarColor parsedColor))
-                {
-                    m_CarColor = parsedColor;
-                }
-                else
-                {
-                    throw new ArgumentException($"Invalid color: {value}. Valid colors are: {string.Join(", ", Enum.GetNames(typeof(CarColor)))}");
-                }
+                m_CarColor = value;
             }
-        }       
+        }
 
         public int NumOfDoors
         {
@@ -71,7 +67,7 @@ namespace Ex03.GarageLogic
                 }
                 else
                 {
-                    throw new InvalidOutOfRangeException(k_MinDoors, k_MaxDoors, value);
+                    throw new ValueOutOfRangeException(k_MinDoors, k_MaxDoors);
                 }
             }
         }

@@ -18,7 +18,7 @@ namespace Ex03.GarageLogic
         
         int m_MaxAirPressure = 29;
         
-        Fuel m_FuelKind=Fuel.Soler;
+        eFuelType m_FuelKind= eFuelType.Soler;
 
         float m_MaxTankFuel = 125;
 
@@ -27,11 +27,11 @@ namespace Ex03.GarageLogic
             m_FuelMax = m_MaxTankFuel;
             m_FuelKind = m_FuelKind;
 
-            for (int i = 0; i < k_NumOfWheels; i++)
+           /* for (int i = 0; i < k_NumOfWheels; i++)
             {
                 m_CollectionWheels[i] = new Wheel();
                 m_CollectionWheels[i].MaxAirPressure = m_MaxAirPressure;
-            }
+            }*/
 
         }
         public bool IsTransportRefrigeratedMaterials 

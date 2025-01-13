@@ -42,8 +42,7 @@ namespace Ex03.ConsoleUI
             Console.WriteLine("2.Print all in fixing");
             Console.WriteLine("3.Print all that fixed");
             Console.WriteLine("4.Print all vhicles");
-       //     Console.WriteLine("5.Print all vhicles basic data");
-            Console.WriteLine("6.Back To Main Menu");
+            Console.WriteLine("5.Back To Main Menu");
 
         }
         internal static void ChangeStatusByLicense()
@@ -83,18 +82,6 @@ namespace Ex03.ConsoleUI
             
 
         }
-        /*
-        internal static void PrintColorsMenu()
-        {
-            Console.WriteLine("Please pick a color of the car");
-            Console.WriteLine("1.{0}", Color.White);
-            Console.WriteLine("2.{0}", Color.Black);
-            Console.WriteLine("3.{0}", Color.Blue);
-            Console.WriteLine("4.{0}", Color.Green);
-            Console.WriteLine("5.{0}", Color.Yellow);
-            Console.WriteLine("6.{0}", Color.Red);
-            Console.WriteLine("7.Other ");
-        }*/
-        
+       
     }
 }

@@ -7,13 +7,20 @@ using Ex03.GarageLogic;
 
 namespace Ex03
 {
-    internal class Wheel
+    public  class Wheel
     {
         private string m_ManufacturerName;
         internal float m_CurrentAirPressure;
         private float m_MaxAirPressure;
-        private float m_MinAirPressure=0;
+        private float m_MinAirPressure = 0;
 
+        public Wheel(string i_ManufacturerName, float i_MaxAirPressure,float i_CurrenAirPressur) 
+        {
+            m_ManufacturerName=i_ManufacturerName;
+            m_MaxAirPressure=i_MaxAirPressure;
+            m_CurrentAirPressure=i_CurrenAirPressur;
+
+        }
 
         string ManufacturerName 
         {
@@ -34,7 +41,7 @@ namespace Ex03
                 }
                 else 
                 {
-                    throw new InvalidOutOfRangeException(m_MinAirPressure, m_MaxAirPressure, value);
+                    throw new ValueOutOfRangeException(m_MinAirPressure, m_MaxAirPressure);
                 }
             }
         }        
@@ -55,7 +62,7 @@ namespace Ex03
             }
             else
             {
-                throw new InvalidOutOfRangeException(m_MinAirPressure, m_MaxAirPressure, m_CurrentAirPressure + i_AirToAdd);
+                throw new ValueOutOfRangeException(m_MinAirPressure, m_MaxAirPressure);
             }
         }
     }

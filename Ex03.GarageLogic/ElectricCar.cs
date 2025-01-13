@@ -15,7 +15,7 @@ namespace Ex03.GarageLogic
 
         private const int k_MinDoors = 1;
 
-        CarColor m_CarColor;
+        eCarColor m_CarColor;
 
         private const int k_MaxDoors = 5;
 
@@ -25,29 +25,26 @@ namespace Ex03.GarageLogic
 
         public ElectricCar()
         {
-           
 
-            for (int i = 0; i < m_Wheels; i++)
+
+            /*for (int i = 0; i < m_Wheels; i++)
             {
                 m_CollectionWheels[i] = new Wheel();
                 m_CollectionWheels[i].MaxAirPressure = m_MaxAirPressure;
-            }
+            }*/
 
-            m_MaxTime = m_MaxTimeBattery;
+            m_MaxEnergyValue = m_MaxTimeBattery;
         }
-        public string ColorOfCar
+
+        public eCarColor CarColor
         {
-            get { return m_CarColor.ToString(); }
+            get
+            {
+                return m_CarColor;
+            }
             set
             {
-                if (Enum.TryParse(value, true, out CarColor parsedColor))
-                {
-                    m_CarColor = parsedColor;
-                }
-                else
-                {
-                    throw new ArgumentException($"Invalid color: {value}. Valid colors are: {string.Join(", ", Enum.GetNames(typeof(CarColor)))}");
-                }
+                m_CarColor = value;
             }
         }
 
@@ -62,7 +59,7 @@ namespace Ex03.GarageLogic
                 }
                 else
                 {
-                    throw new InvalidOutOfRangeException(k_MinDoors, k_MaxDoors, value);
+                    throw new ValueOutOfRangeException(k_MinDoors, k_MaxDoors);
                 }
             }
         }

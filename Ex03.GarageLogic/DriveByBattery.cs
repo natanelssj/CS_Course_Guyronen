@@ -10,48 +10,57 @@ namespace Ex03.GarageLogic
 
     public class DriveByBattery:Vichle
     {
-        public float m_TimeRemain =0;
-        protected  float m_MaxTime = 0;
-        private const float m_MinTime= 0;
-       
-        public float BatteryStatus
+
+        public float m_AvailableEnergyValue;
+        public float m_MaxEnergyValue;
+        public float AvailableBatteryHours
         {
-            get { return m_TimeRemain; }
+            get
+            {
+                return m_AvailableEnergyValue;
+            }
             set
             {
-                if (m_MaxTime < value && m_MinTime < value)
-                {
-                    throw new InvalidOutOfRangeException(m_MinTime,m_MaxTime,value);
-                }
-                else {
-                    m_TimeRemain = value;
-                    EnergyPrecents =((m_TimeRemain) / (m_MaxTime) * 100);
-
-                }
+                m_AvailableEnergyValue = value;
             }
         }
 
-
-        public void Charge (float timeAddCharge )
+        public float MaxBatteryHours
         {
-            
-            if (timeAddCharge + m_TimeRemain <= m_TimeRemain)
+            get
             {
-                m_TimeRemain += timeAddCharge;
+                return m_MaxEnergyValue;
             }
-            else 
+            set
             {
-                throw new  InvalidOutOfRangeException(m_TimeRemain,m_MaxTime,timeAddCharge);
+                m_MaxEnergyValue = value;
             }
         }
+
+        public void Charge(float i_HoursToCharge)
+        {
+            if (AvailableBatteryHours + i_HoursToCharge > MaxBatteryHours)
+            {
+                float maxNumberOfHoursPossibleToCharge = MaxBatteryHours - AvailableBatteryHours;
+                throw new ValueOutOfRangeException(0, maxNumberOfHoursPossibleToCharge);
+            }
+
+            AvailableBatteryHours += i_HoursToCharge;
+        }
+
+        public override string ToString()
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.AppendLine($"Available battery hours: {AvailableBatteryHours}");
+            stringBuilder.Append($"Max battery hours: {MaxBatteryHours}");
+
+            return stringBuilder.ToString();
+        }
+
+
         public override void SetAirPressure(float i_AirPressure) { }
 
         public override void PutPressure(float i_Pressure) { }
-     
-        public void ChargeBattery(int i_Time)
-        {
-            BatteryStatus = m_TimeRemain + i_Time;
-        }
 
         public override float GetAirPressure() { return 0; }
     }

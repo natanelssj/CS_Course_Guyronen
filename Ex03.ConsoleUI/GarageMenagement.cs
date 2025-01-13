@@ -56,6 +56,7 @@ namespace Ex03.ConsoleUI
             try
             {
                 Console.WriteLine("Enter Number of Licence Plate:");
+
                 string licensePlate = Console.ReadLine();
 
                 // בדיקה אם מספר הרישוי כבר קיים
@@ -66,23 +67,21 @@ namespace Ex03.ConsoleUI
                 }
 
                 // אם מספר הרישוי חדש, הוסף אותו והמשך
+                Console.WriteLine("Enter Owner Name : ");
+                string OwnerName= Console.ReadLine();
+                Console.WriteLine("Enter Owner Phone : ");
+                string PhoneNumber = Console.ReadLine();
                 Console.Clear();
                 MenuPrints.PrintInsertNewVhicleMenu();
                 string choice = Console.ReadLine();
-                Console.WriteLine("Creating New ");
-                Factory.ChoosingVichle(choice);
+                Vichle vichle =null;
+                vichle = Factory.ChoosingVichle(choice);
+                vichle.GetPhoneNumber = PhoneNumber;
+                vichle.LicensePlate = licensePlate;
+                vichle.OwnerName = OwnerName;
+                
 
-                /*
-                Vichle newVichle = CreateVehicleByChoice(choice, licensePlate)// יצירת רכב חדש
-                if (newVichle != null)
-                {
-                    GarageManagement.AddVehicle(newVichle); // הוספת הרכב לניהול המוסך
-                    Console.WriteLine("The vehicle has been successfully added to the garage.");
-                }
-                else
-                {
-                    Console.WriteLine("Invalid choice. Returning to main menu.");
-                }*/
+
             }
             catch (Exception ex)
             {
@@ -92,7 +91,7 @@ namespace Ex03.ConsoleUI
 
         private static bool IsLicensePlateExists(string licensePlate)
         {
-            return Vichle.GetExistingLicensePlates().Contains(licensePlate);
+            return Vichle.GetExistingLicensePlates(licensePlate).Contains(licensePlate);
         }
         public static void ManageVichle() { }
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace Ex03.GarageLogic
 {
@@ -8,15 +9,22 @@ namespace Ex03.GarageLogic
         private string m_Model;
         public string m_LicensePlate;
         private float m_EnergyPrecents;
-        private int m_WheelsAmount;
+        private List<Wheel> m_Wheels;
         private string m_PhoneNumber;
-        Status m_Status;
+        private string m_Name;
+        eGarageVehicleStatus m_Status;
 
         private static List<string> s_LicensePlates = new List<string>(); // Static list for license plates
 
-        internal Vichle()
+        public Vichle()
         {
-            m_Status = Status.InFix;
+
+            m_Status = eGarageVehicleStatus.Repaired;
+        }
+        public string OwnerName
+        {
+            get {return m_Name;}
+            set {m_Name = value;}
         }
 
         public string LicensePlate
@@ -58,10 +66,16 @@ namespace Ex03.GarageLogic
             set { m_Model = value; }
         }
 
-        public int WheelsAmount
+        public List<Wheel> Wheels
         {
-            get { return m_WheelsAmount; }
-            set { m_WheelsAmount = value; }
+            get
+            {
+                return m_Wheels;
+            }
+            set
+            {
+                m_Wheels = value;
+            }
         }
 
         public abstract void SetAirPressure(float i_AirPressure);
@@ -82,14 +96,38 @@ namespace Ex03.GarageLogic
             }
             return isNumberOfLicense;
         }
-
-        public static void RemoveLicensePlate(string licensePlate) // Optional method for removing license plates
+        public static bool IsLicensePlateExists(string licensePlate)
         {
-            s_LicensePlates.Remove(licensePlate);
+            return s_LicensePlates.Contains(licensePlate);
         }
-        public static List<string> GetExistingLicensePlates() // Method to return the list of license plates
+
+        public static List<string> GetExistingLicensePlates(string platesToCheck)
         {
-            return new List<string>(s_LicensePlates); // Return a copy to prevent external modification
+            List<string> existingPlates = new List<string>();
+
+            foreach (var plate in existingPlates)
+            {
+                if (s_LicensePlates.Contains(plate))
+                {
+                    existingPlates.Add(plate);
+                }
+            }
+
+            return existingPlates;
+
+        }
+        public override string ToString()
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.AppendLine($"Model name: {m_Model}");
+            stringBuilder.AppendLine($"License number: {m_LicensePlate}");
+            stringBuilder.AppendLine("Wheels:");
+            for (int i = 0; i < Wheels.Count; i++)
+            {
+                stringBuilder.AppendLine($"    {Wheels[i].ToString()}");
+            }
+
+            return stringBuilder.ToString();
         }
     }
 }
