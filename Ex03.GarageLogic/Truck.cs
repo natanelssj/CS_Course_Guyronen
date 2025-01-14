@@ -20,7 +20,7 @@ namespace Ex03.GarageLogic
         
         eFuelType m_FuelKind= eFuelType.Soler;
 
-        float m_MaxTankFuel = 125;
+        public float m_MaxTankFuel = 125;
 
         public Truck() 
         {
@@ -82,4 +82,3 @@ namespace Ex03.GarageLogic
 
     }
 }
- 

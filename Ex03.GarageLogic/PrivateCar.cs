@@ -8,11 +8,9 @@ namespace Ex03.GarageLogic
 {
    public  class PrivateCar: DriveByFuel
     {
-        //string[] m_Color = {"blue", "black","white","gray" };
 
         eCarColor m_CarColor;
 
-        int[] m_DoorsNumber = { 2, 3, 4, 5 };
 
         private int k_MaxDoors=5;
 
@@ -41,8 +39,6 @@ namespace Ex03.GarageLogic
                 m_CollectionWheels[i] = new Wheel();
                 m_CollectionWheels[i].MaxAirPressure=m_MaxAirPressure;
             }*/
-
-
         }
         public eCarColor CarColor
         {

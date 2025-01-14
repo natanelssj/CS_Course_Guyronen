@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Ex03.GarageLogic;
 namespace Ex03.ConsoleUI
 {
     /// <summary>
@@ -61,7 +62,7 @@ namespace Ex03.ConsoleUI
             Console.WriteLine("3.Payed");
             Console.WriteLine("4.Back to previous menu");
         }
-
+        
 
         internal static void PrintManageVhiclesMenu()
         {

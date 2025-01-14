@@ -46,6 +46,7 @@
     <Compile Include="ElectricCar.cs" />
     <Compile Include="ElectricMotorcycle.cs" />
     <Compile Include="FuelType.cs" />
+    <Compile Include="GarageManager.cs" />
     <Compile Include="GarageVehicleStatus.cs" />
     <Compile Include="InvalidOutOfRangeException.cs" />
     <Compile Include="LicenseCategory.cs" />

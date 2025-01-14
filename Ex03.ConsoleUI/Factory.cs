@@ -9,6 +9,8 @@ namespace Ex03.ConsoleUI
 {
     internal class Factory
     {
+
+        
         public static Vichle  ChoosingVichle(string choice)
         {
 
@@ -25,7 +27,6 @@ namespace Ex03.ConsoleUI
                     vichle = CreatePrivateCar();
                     break;
                 case "4":
-
                     vichle = CreateElectricCar();
                     break;
                 case "5":
@@ -40,6 +41,7 @@ namespace Ex03.ConsoleUI
         }
         private static Vichle CreateElectricMotorcycle()
         {
+
             ElectricMotorcycle electricMotorcycle = new ElectricMotorcycle();
             setCommonVehicleProperties(electricMotorcycle);
             Console.WriteLine("Enter Remaining Time of Battery:");
@@ -56,14 +58,13 @@ namespace Ex03.ConsoleUI
             return electricMotorcycle;
 
         }
+        
         private static  Vichle CreateFuelMotorcycle()
         {
-            float Fuel;
             FuelMotorcycle motorcycle = new FuelMotorcycle();
             setCommonVehicleProperties(motorcycle);
             Console.WriteLine("Enter amount of Fuel:");
-            Fuel = GetValidFloat(0,6.2f);
-            motorcycle.PutFuel(Fuel, eFuelType.Octan98);
+            motorcycle.QuantityOfFuel = GetValidFloat(0, 6.2f);
             Console.Write("Enter engine volume: ");
             motorcycle.Engine= GetValidChoice(50, 2000);
             Console.WriteLine("Choose license type:");
@@ -78,12 +79,11 @@ namespace Ex03.ConsoleUI
 
         private static Vichle CreatePrivateCar()
         {
-            float Fuel;
             PrivateCar privateCar = new PrivateCar();
             setCommonVehicleProperties (privateCar);
             Console.WriteLine("Enter amount of Fuel:");
-            Fuel = GetValidFloat(0,52f);
-            privateCar.PutFuel(Fuel, eFuelType.Octan95);
+//            truck.QuantityOfFuel = GetValidFloat(0, truck.m_MaxTankFuel);
+            privateCar.QuantityOfFuel= GetValidFloat(0, 52f);
             Console.WriteLine("Choose Color car :");
             Console.WriteLine("1. Blue");
             Console.WriteLine("2. White");
@@ -113,18 +113,18 @@ namespace Ex03.ConsoleUI
             electricCar.NumOfDoors = GetValidChoice(2, 5);
             return electricCar;
         }
+
         private static Vichle CreateTruck() {
-            Vichle v = null;
-
-            return v;
+            Truck truck = new Truck();
+            Console.WriteLine("Enter amount of Fuel:");
+            truck.QuantityOfFuel=GetValidFloat(0, truck.m_MaxTankFuel);
+            setCommonVehicleProperties(truck);
+            Console.Write("Enter cargo volume: ");
+            truck.CargoVolume = GetValidFloat(0, float.MaxValue);
+            Console.Write("Is carrying dangerous materials (y/n): ");
+            truck.IsTransportRefrigeratedMaterials = Console.ReadLine().ToLower() == "y";
+            return truck;
         }
-
-
-
-
-
-
-
 
         private static  void setCommonVehicleProperties(Vichle i_vehicle)
         {

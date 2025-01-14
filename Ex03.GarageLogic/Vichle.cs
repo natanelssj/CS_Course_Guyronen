@@ -12,14 +12,13 @@ namespace Ex03.GarageLogic
         private List<Wheel> m_Wheels;
         private string m_PhoneNumber;
         private string m_Name;
-        eGarageVehicleStatus m_Status;
+        public eGarageVehicleStatus m_Status;
 
         private static List<string> s_LicensePlates = new List<string>(); // Static list for license plates
 
         public Vichle()
         {
-
-            m_Status = eGarageVehicleStatus.Repaired;
+            m_Status = eGarageVehicleStatus.InRepair;
         }
         public string OwnerName
         {
@@ -85,10 +84,6 @@ namespace Ex03.GarageLogic
         private bool CheckNumberOfLicense(string m_licensePlate)
         {
             bool isNumberOfLicense = true;
-            if (m_licensePlate.Length != 7)
-            {
-                isNumberOfLicense = false;
-            }
             int checkNum;
             if (!(int.TryParse(m_licensePlate, out checkNum)))
             {
