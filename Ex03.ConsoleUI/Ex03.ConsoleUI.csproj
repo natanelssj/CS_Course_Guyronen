@@ -46,6 +46,7 @@
     <Compile Include="Factory.cs" />
     <Compile Include="GarageMenagement.cs" />
     <Compile Include="MenuPrints.cs" />
+    <Compile Include="ValidInput.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

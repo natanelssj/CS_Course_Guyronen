@@ -33,21 +33,21 @@ namespace Ex03.ConsoleUI
                     case "2":
                         displayLicenseNumbers();
                         break;
-                           case"3":
-                               changeVehicleStatus();
-                               break;
-                      /*     case 4:
-                               inflateVehicleTires();
-                               break;
-                           case 5:
-                               refuelVehicle();
-                               break;
-                           case 6:
-                               rechargeVehicle();
-                               break;
-                           case 7:
-                               displayVehicleInformation();
-                               break;*/
+                    case"3":
+                        changeVehicleStatus();
+                        break;
+                    case "4":
+                        inflateVehicleTires();
+                        break;
+                    case "5":
+                        refuelVehicle();
+                        break;
+                    case "6":
+                        rechargeVehicle();
+                        break;
+                    case "7":
+                        displayVehicleInformation();
+                        break;
                     case "8":
                         exitProgram = true;
                         break;
@@ -57,10 +57,19 @@ namespace Ex03.ConsoleUI
                 }
             }
         }
+
+
+        public string GetLicenseNumberFromUser()
+        {
+            Console.Write("Enter license number: ");
+
+            return Console.ReadLine() ?? throw new ArgumentNullException("License number cannot be null");
+        }
         public void  InsertVichle()
         {
             try
             {
+                
                 Console.WriteLine("Enter Number of Licence Plate:");
                 string licensePlate = Console.ReadLine();
 
@@ -131,27 +140,20 @@ namespace Ex03.ConsoleUI
             }
             waitForUserInput();
         }
-
-
-
-
         public eGarageVehicleStatus GetStatusChoiceFromUser()
         {
             Console.WriteLine("Choose a status to filter by:");
             Console.WriteLine("1. In Repair");
             Console.WriteLine("2. Repaired");
             Console.WriteLine("3. Paid");
-            int statusChoice =Factory.GetValidChoice(1, 3);
+            int statusChoice =  ValidInput.GetValidChoice(1, 3);
 
             return (eGarageVehicleStatus)(statusChoice - 1);
         }
-
-
         public void changeVehicleStatus()
         { 
             eGarageVehicleStatus Status;
-            Console.WriteLine("Enter Number of Licence Plate:");
-            string licensePlate = Console.ReadLine();
+            string licensePlate = GetLicenseNumberFromUser();
 
             if (!garageManager.IsLicensePlateExists(licensePlate))
             {
@@ -167,9 +169,22 @@ namespace Ex03.ConsoleUI
             }
 
         }
+        public void inflateVehicleTires()
+        {
+            string licensePlate = GetLicenseNumberFromUser();
+            if (garageManager.IsLicensePlateExists(licensePlate))
+            {
+                Vichle.GetExistingLicensePlates(licensePlate);
+                garageManager.AddAirVehicleWheels(licensePlate);
+                Console.WriteLine("Air Added Succucessfully. . .");
 
-        public void PrintVichle() { }
-
+            }
+            else
+            {
+                Console.WriteLine("Licence number doesn't exist in the Garage");
+            }
+            waitForUserInput();
+        }
         private void IfLicenceExist()
         {
             Console.WriteLine("The vehicle already exists in the garage.");
@@ -187,5 +202,82 @@ namespace Ex03.ConsoleUI
 
             return Console.ReadLine() ?? throw new ArgumentNullException("Filter choice cannot be null");
         }
+
+        public void refuelVehicle()
+        {
+            string licenseNumber = GetLicenseNumberFromUser();
+            if (garageManager.VehicleIsAlreadyInGarage(licenseNumber))
+            {
+                eFuelType fuelType = GetFuelType();
+                float amount = GetAmountToFillFromUser();
+                try
+                {
+                    garageManager.RefuelVehicle(licenseNumber, fuelType, amount);
+                    Console.WriteLine("Vehicle refueled successfully");
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine($"Error: {e.Message}");
+                }
+            }
+            else
+            {
+                Console.WriteLine($"No vehicle found with license number: {licenseNumber}");
+            }
+            waitForUserInput();
+        }
+        public eFuelType GetFuelType()
+        {
+            Console.WriteLine("Please Enter Fuel Type:\n 1. Octan95 \n2. Octan96\n 3. Octan98\n 4. Soler ");
+            int FuelChoice = ValidInput.GetValidChoice(1, 4);
+            return (eFuelType)(FuelChoice - 1);
+        }
+        public void rechargeVehicle() 
+        {
+            Console.WriteLine("Enter Number of Licence Plate:");
+            string licensePlate = Console.ReadLine();
+            if (garageManager.VehicleIsAlreadyInGarage(licensePlate))
+            {
+                float amountToFill = GetAmountToFillFromUser();
+                try
+                {
+                    garageManager.RechargeVehicle(licensePlate, amountToFill);
+                    Console.WriteLine("Vehicle recharged successfully");
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine($"Error: {e.Message}");
+                }
+            }
+            else
+            {
+                Console.WriteLine($"No vehicle found with license number: {licensePlate}");
+            }
+            waitForUserInput();
+        }
+        public float GetAmountToFillFromUser()
+        {
+            Console.Write("Enter amount to fill: ");
+
+            return  ValidInput.GetValidFloat(0, float.MaxValue);
+        }
+        public void  displayVehicleInformation()
+        {
+            Console.WriteLine("Enter Number of Licence Plate:");
+            string licensePlate = Console.ReadLine();
+
+            if (!garageManager.IsLicensePlateExists(licensePlate))
+            {
+                Console.WriteLine($"No vehicle found with license number:{licensePlate}");
+            }
+            else 
+            {
+                string vehicleDetails = garageManager.GetVehicleDetails(licensePlate);
+                Console.WriteLine(vehicleDetails);
+            }
+            waitForUserInput();
+        }
+
+
     }
 }

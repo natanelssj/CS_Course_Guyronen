@@ -93,7 +93,12 @@ namespace Ex03.GarageLogic
 
         public override string ToString()
         {
-            return "Private Car";
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.AppendLine(base.ToString());
+            stringBuilder.AppendLine($"Color: {CarColor}");
+            stringBuilder.AppendLine($"Number of doors: {NumOfDoors}");
+
+            return stringBuilder.ToString();
         }
     }
 }

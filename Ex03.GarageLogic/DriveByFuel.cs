@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
+using System.Text;
 
 namespace Ex03.GarageLogic
 {
@@ -12,8 +13,12 @@ namespace Ex03.GarageLogic
         public eFuelType m_FuelKind;
         private const float k_MinValue = 0;
 
+        public eEngineType Engine
+        {
+            get { return eEngineType; }
+            set { eEngineType = eEngineType.Fuel; }
+        }
 
-     
 
         public float QuantityOfFuel
         {
@@ -50,11 +55,22 @@ namespace Ex03.GarageLogic
             }
             else
             {
-                throw new ArgumentException();
+                throw new ArgumentException("Fuel type mismatch");
             }
         }
         public override float GetAirPressure() { return 0; }
 
+        public override string ToString()
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.AppendLine(base.ToString());
+            stringBuilder.AppendLine($"Fuel Type: {m_FuelKind}");
+            stringBuilder.AppendLine($"Available Fuel Liters: {QuantityOfFuel}");
+            stringBuilder.AppendLine($"Max Fuel Liters: {m_FuelMax}");
+            stringBuilder.AppendLine($"Available Energy Percentage: {EnergyPrecents}%");
+
+            return stringBuilder.ToString();
+        }
 
 
 

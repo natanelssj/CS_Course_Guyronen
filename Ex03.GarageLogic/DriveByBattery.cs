@@ -13,6 +13,7 @@ namespace Ex03.GarageLogic
 
         public float m_AvailableEnergyValue;
         public float m_MaxEnergyValue;
+        
         public float AvailableBatteryHours
         {
             get
@@ -24,6 +25,13 @@ namespace Ex03.GarageLogic
                 m_AvailableEnergyValue = value;
             }
         }
+
+        public eEngineType Engine
+        {
+            get { return eEngineType; }
+            set {eEngineType = eEngineType.Electric; }
+        }
+
 
         public float MaxBatteryHours
         {
@@ -51,8 +59,9 @@ namespace Ex03.GarageLogic
         public override string ToString()
         {
             StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.AppendLine($"Available battery hours: {AvailableBatteryHours}");
-            stringBuilder.Append($"Max battery hours: {MaxBatteryHours}");
+            stringBuilder.AppendLine(base.ToString());
+            stringBuilder.AppendLine($"Available Battery Hours: {AvailableBatteryHours}");
+            stringBuilder.AppendLine($"Max Battery Hours: {MaxBatteryHours}");
 
             return stringBuilder.ToString();
         }
@@ -63,6 +72,8 @@ namespace Ex03.GarageLogic
         public override void PutPressure(float i_Pressure) { }
 
         public override float GetAirPressure() { return 0; }
+
+        
     }
 }
 

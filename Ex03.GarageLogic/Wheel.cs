@@ -65,5 +65,13 @@ namespace Ex03
                 throw new ValueOutOfRangeException(m_MinAirPressure, m_MaxAirPressure);
             }
         }
+        public override string ToString()
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.AppendFormat("{{Manufacturer Name: {0}, Current Air Pressure: {1}, Max Air Pressure: {2}}}",
+                            ManufacturerName, CurrentAirPressure, MaxAirPressure);
+
+            return stringBuilder.ToString();
+        }
     }
 }

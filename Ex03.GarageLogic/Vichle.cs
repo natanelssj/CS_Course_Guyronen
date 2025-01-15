@@ -13,6 +13,7 @@ namespace Ex03.GarageLogic
         private string m_PhoneNumber;
         private string m_Name;
         public eGarageVehicleStatus m_Status;
+        public eEngineType eEngineType;
 
         private static List<string> s_LicensePlates = new List<string>(); // Static list for license plates
 
@@ -114,12 +115,14 @@ namespace Ex03.GarageLogic
         public override string ToString()
         {
             StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.AppendLine($"Model name: {m_Model}");
-            stringBuilder.AppendLine($"License number: {m_LicensePlate}");
+            stringBuilder.AppendLine($"Owner Name: {OwnerName}");
+            stringBuilder.AppendLine($"License Plate: {m_LicensePlate}");
+            stringBuilder.AppendLine($"Model Name: {m_Model}");
+            stringBuilder.AppendLine($"Status : {m_Status}");
             stringBuilder.AppendLine("Wheels:");
-            for (int i = 0; i < Wheels.Count; i++)
+            foreach (Wheel wheel in Wheels)
             {
-                stringBuilder.AppendLine($"    {Wheels[i].ToString()}");
+                stringBuilder.AppendLine($"    {wheel.ToString()}");
             }
 
             return stringBuilder.ToString();

@@ -22,6 +22,8 @@ namespace Ex03.GarageLogic
         private int m_NumOfDoors;
 
         private Wheel[] m_CollectionWheels = new Wheel[m_Wheels];
+        
+
 
         public ElectricCar()
         {
@@ -89,7 +91,12 @@ namespace Ex03.GarageLogic
 
         public override string ToString()
         {
-            return "Electric Car";
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.AppendLine(base.ToString());
+            stringBuilder.AppendLine($"Car Color: {CarColor}");
+            stringBuilder.AppendLine($"Number of Doors: {m_NumOfDoors}");
+
+            return stringBuilder.ToString();
         }
     }
 

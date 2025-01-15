@@ -43,107 +43,73 @@ namespace Ex03.GarageLogic
 
             return licenseNumbers;
         }
-
         public void ChangeStatusToVehicle(string licensePlate, eGarageVehicleStatus newStatus)
         {
             if (!m_Vehicles.ContainsKey(licensePlate))
             {
                 throw new ArgumentException("Vehicle not found");
             }
-
             m_Vehicles[licensePlate].m_Status = newStatus;
 
         }
+        public void RefuelVehicle(string i_LicenseNumber, eFuelType i_FuelType, float i_LitersToRefuel)
+        {
+            if (!m_Vehicles.ContainsKey(i_LicenseNumber))
+            {
+                throw new ArgumentException("Vehicle not found");
+            }
+
+            if (m_Vehicles[i_LicenseNumber] is DriveByFuel fuelEngine)
+            {
+                fuelEngine.PutFuel(i_LitersToRefuel, i_FuelType);
+            }
+            else
+            {
+                throw new ArgumentException("The vehicle is not a fuel-based vehicle and cannot be refueled");
+            }
+        }
+
+        public void AddAirVehicleWheels(string i_LicenseNumber)
+        {
+            if (!m_Vehicles.ContainsKey(i_LicenseNumber))
+            {
+                throw new ArgumentException("Vehicle not found");
+            }
+
+            foreach (var wheel in m_Vehicles[i_LicenseNumber].Wheels)
+            {
+                wheel.AddAir(wheel.MaxAirPressure - wheel.CurrentAirPressure);
+            }
+        }
+        public void RechargeVehicle(string i_LicenseNumber, float i_MinutesToCharge)
+        {
+            if (!m_Vehicles.ContainsKey(i_LicenseNumber))
+            {
+                throw new ArgumentException("Vehicle not found");
+            }
+
+            if (m_Vehicles[i_LicenseNumber] is DriveByBattery electricEngine)
+            {
+                float hoursToCharge = i_MinutesToCharge / 60;
+                electricEngine.Charge(hoursToCharge);
+            }
+            else
+            {
+                throw new ArgumentException("The vehicle is not an electric vehicle and cannot be charged");
+            }
+        }
+
+
+        public string GetVehicleDetails(string i_LicenseNumber)
+        {
+            if (!m_Vehicles.ContainsKey(i_LicenseNumber))
+            {
+                throw new ArgumentException("Vehicle not found");
+            }
+            return m_Vehicles[i_LicenseNumber].ToString();
+        }
+
     }
-    
-    /*
-            
-            public void InflateVehicleWheels(string i_LicenseNumber)
-            {
-                if (!m_Vehicles.ContainsKey(i_LicenseNumber))
-                {
-                    throw new ArgumentException("Vehicle not found");
-                }
-
-                foreach (var wheel in m_Vehicles[i_LicenseNumber].Vehicle.Wheels)
-                {
-                    wheel.InflateWheels(wheel.MaxAirPressure - wheel.CurrentAirPressure);
-                }
-            }
-
-            public void RefuelVehicle(string i_LicenseNumber, eFuelType i_FuelType, float i_LitersToRefuel)
-            {
-                if (!m_Vehicles.ContainsKey(i_LicenseNumber))
-                {
-                    throw new ArgumentException("Vehicle not found");
-                }
-
-                if (m_Vehicles[i_LicenseNumber].Vehicle.EngineType is FuelEngine fuelEngine)
-                {
-                    fuelEngine.Refuel(i_LitersToRefuel, i_FuelType);
-                }
-                else
-                {
-                    throw new ArgumentException("The vehicle is not a fuel-based vehicle and cannot be refueled");
-                }
-            }
-
-            public void RechargeVehicle(string i_LicenseNumber, float i_MinutesToCharge)
-            {
-                if (!m_Vehicles.ContainsKey(i_LicenseNumber))
-                {
-                    throw new ArgumentException("Vehicle not found");
-                }
-
-                if (m_Vehicles[i_LicenseNumber].Vehicle.EngineType is ElectricEngine electricEngine)
-                {
-                    float hoursToCharge = i_MinutesToCharge / 60;
-                    electricEngine.Charge(hoursToCharge);
-                }
-                else
-                {
-                    throw new ArgumentException("The vehicle is not an electric vehicle and cannot be charged");
-                }
-            }
-
-            public List<string> GetLicenseNumbersWithoutFilters()
-            {
-                return m_Vehicles.Keys.ToList();
-            }
-
-            public List<string> GetLicenseNumbersFilteredByStatus(eGarageVehicleStatus i_Status)
-            {
-                List<string> licenseNumbers = new List<string>();
-                foreach(var vehicle in m_Vehicles)
-                {
-                    if(vehicle.Value.Status == i_Status)
-                    {
-                        licenseNumbers.Add(vehicle.Key);
-                    }
-                }
-
-                return licenseNumbers;
-            }
-
-            public void ChangeStatusToVehicle(string i_LicenseNumber, eGarageVehicleStatus i_Status)
-            {
-                if (!m_Vehicles.ContainsKey(i_LicenseNumber))
-                {
-                    throw new ArgumentException("Vehicle not found");
-                }
-
-                m_Vehicles[i_LicenseNumber].Status = i_Status;
-            }
-
-            public string GetVehicleDetails(string i_LicenseNumber)
-            {
-                if (!m_Vehicles.ContainsKey(i_LicenseNumber))
-                {
-                    throw new ArgumentException("Vehicle not found");
-                }
-
-                return m_Vehicles[i_LicenseNumber].ToString();
-            }
-            */
+   
 }
 

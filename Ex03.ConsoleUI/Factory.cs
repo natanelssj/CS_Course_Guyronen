@@ -45,15 +45,15 @@ namespace Ex03.ConsoleUI
             ElectricMotorcycle electricMotorcycle = new ElectricMotorcycle();
             setCommonVehicleProperties(electricMotorcycle);
             Console.WriteLine("Enter Remaining Time of Battery:");
-            electricMotorcycle.AvailableBatteryHours = GetValidFloat(0, 2.9f);
+            electricMotorcycle.AvailableBatteryHours = ValidInput.GetValidFloat(0, 2.9f);
             Console.Write("Enter engine volume: ");
-            electricMotorcycle.Engine = GetValidChoice(50, 2000);
+            electricMotorcycle.Engine = ValidInput.GetValidChoice(50, 2000);
             Console.WriteLine("Choose license type:");
             Console.WriteLine("1. A1");
             Console.WriteLine("2. A2");
             Console.WriteLine("3. AB");
             Console.WriteLine("4. B1");
-            int licenseTypeChoice = GetValidChoice(1, 4);
+            int licenseTypeChoice = ValidInput.GetValidChoice(1, 4);
             electricMotorcycle.LicenseCategory = (eLicenseCategory)(licenseTypeChoice - 1);
             return electricMotorcycle;
 
@@ -64,15 +64,15 @@ namespace Ex03.ConsoleUI
             FuelMotorcycle motorcycle = new FuelMotorcycle();
             setCommonVehicleProperties(motorcycle);
             Console.WriteLine("Enter amount of Fuel:");
-            motorcycle.QuantityOfFuel = GetValidFloat(0, 6.2f);
+            motorcycle.QuantityOfFuel = ValidInput.GetValidFloat(0, 6.2f);
             Console.Write("Enter engine volume: ");
-            motorcycle.Engine= GetValidChoice(50, 2000);
+            motorcycle.Engine= ValidInput.GetValidChoice(50, 2000);
             Console.WriteLine("Choose license type:");
             Console.WriteLine("1. A1");
             Console.WriteLine("2. A2");
             Console.WriteLine("3. AB");
             Console.WriteLine("4. B1");
-            int licenseTypeChoice = GetValidChoice(1, 4);
+            int licenseTypeChoice = ValidInput.GetValidChoice(1, 4);
             motorcycle.LicenseCategory = (eLicenseCategory)(licenseTypeChoice - 1);
             return motorcycle;
         }
@@ -83,16 +83,16 @@ namespace Ex03.ConsoleUI
             setCommonVehicleProperties (privateCar);
             Console.WriteLine("Enter amount of Fuel:");
 //            truck.QuantityOfFuel = GetValidFloat(0, truck.m_MaxTankFuel);
-            privateCar.QuantityOfFuel= GetValidFloat(0, 52f);
+            privateCar.QuantityOfFuel= ValidInput.GetValidFloat(0, 52f);
             Console.WriteLine("Choose Color car :");
             Console.WriteLine("1. Blue");
             Console.WriteLine("2. White");
             Console.WriteLine("3. Black");
             Console.WriteLine("4. Red");
-            int Carcolor = GetValidChoice(1, 4);
+            int Carcolor = ValidInput.GetValidChoice(1, 4);
             privateCar.CarColor= (eCarColor)(Carcolor - 1);
             Console.WriteLine("Enter Number Of Doors (2,3,4,5):");
-            privateCar.NumOfDoors=GetValidChoice(2, 5);
+            privateCar.NumOfDoors=ValidInput.GetValidChoice(2, 5);
             return privateCar;
         }
 
@@ -101,26 +101,26 @@ namespace Ex03.ConsoleUI
             ElectricCar electricCar = new ElectricCar();
             setCommonVehicleProperties(electricCar);
             Console.WriteLine("Enter Remaining Time of Battery:");
-            electricCar.AvailableBatteryHours= GetValidFloat(0, 5.4f);
+            electricCar.AvailableBatteryHours= ValidInput.GetValidFloat(0, 5.4f);
             Console.WriteLine("Choose Color car :");
             Console.WriteLine("1. Blue");
             Console.WriteLine("2. White");
             Console.WriteLine("3. Black");
             Console.WriteLine("4. Red");
-            int Carcolor = GetValidChoice(1, 4);
+            int Carcolor = ValidInput.GetValidChoice(1, 4);
             electricCar.CarColor = (eCarColor)(Carcolor - 1);
             Console.WriteLine("Enter Number Of Doors (2,3,4,5):");
-            electricCar.NumOfDoors = GetValidChoice(2, 5);
+            electricCar.NumOfDoors = ValidInput.GetValidChoice(2, 5);
             return electricCar;
         }
 
         private static Vichle CreateTruck() {
             Truck truck = new Truck();
             Console.WriteLine("Enter amount of Fuel:");
-            truck.QuantityOfFuel=GetValidFloat(0, truck.m_MaxTankFuel);
+            truck.QuantityOfFuel=ValidInput.GetValidFloat(0, truck.m_MaxTankFuel);
             setCommonVehicleProperties(truck);
             Console.Write("Enter cargo volume: ");
-            truck.CargoVolume = GetValidFloat(0, float.MaxValue);
+            truck.CargoVolume = ValidInput.GetValidFloat(0, 1000f);
             Console.Write("Is carrying dangerous materials (y/n): ");
             truck.IsTransportRefrigeratedMaterials = Console.ReadLine().ToLower() == "y";
             return truck;
@@ -157,7 +157,7 @@ namespace Ex03.ConsoleUI
             Console.Write("Enter manufacturer name: ");
             string manufacturer = Console.ReadLine() ?? throw new ArgumentNullException("Manufacturer name cannot be null");
             Console.Write("Enter wheels air pressure: ");
-            float airPressure = GetValidFloat(0, maxAirPressure);
+            float airPressure =ValidInput.GetValidFloat(0, maxAirPressure);
             for (int i = 0; i < numberOfWheels; i++)
             {
                 Wheel wheel = new Wheel(manufacturer, maxAirPressure, airPressure);
@@ -166,26 +166,7 @@ namespace Ex03.ConsoleUI
 
             return wheels;
         }
-        public static float GetValidFloat(float i_Min, float i_Max)
-        {
-            float value;
-            while (!float.TryParse(Console.ReadLine(), out value) || value < i_Min || value > i_Max)
-            {
-                Console.WriteLine($"Invalid input, please enter a value between {i_Min} and {i_Max}");
-            }
-
-            return value;
-        }
-        public static int GetValidChoice(int i_Min, int i_Max)
-        {
-            int choice;
-            while (!int.TryParse(Console.ReadLine(), out choice) || choice < i_Min || choice > i_Max)
-            {
-                Console.WriteLine($"Invalid choice, please enter a number between {i_Min} and {i_Max}.");
-            }
-
-            return choice;
-        }
+        
     }
 
 }

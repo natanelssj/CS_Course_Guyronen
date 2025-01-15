@@ -27,12 +27,6 @@ namespace Ex03.GarageLogic
             m_FuelMax = m_MaxTankFuel;
             m_FuelKind = m_FuelKind;
 
-           /* for (int i = 0; i < k_NumOfWheels; i++)
-            {
-                m_CollectionWheels[i] = new Wheel();
-                m_CollectionWheels[i].MaxAirPressure = m_MaxAirPressure;
-            }*/
-
         }
         public bool IsTransportRefrigeratedMaterials 
         {
@@ -76,8 +70,12 @@ namespace Ex03.GarageLogic
         }
         public override string ToString()
         {
-            return "Truck";
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.AppendLine(base.ToString());
+            stringBuilder.AppendLine($"Is Carrying Dangerous Materials: {m_isTransportRefrigeratedMaterials}");
+            stringBuilder.AppendLine($"Cargo Volume: {m_CargoVolume} cc");
 
+            return stringBuilder.ToString();
         }
 
     }

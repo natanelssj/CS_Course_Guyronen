@@ -76,7 +76,12 @@ namespace Ex03.GarageLogic
 
         public override string ToString()
         {
-            return "Motorcycle";
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.AppendLine(base.ToString());
+            stringBuilder.AppendLine($"Engine volume: {EngineDisplacementCc} cc");
+            stringBuilder.AppendLine($"License category: {LicenseCategory}");
+
+            return stringBuilder.ToString();
         }
 
     }
